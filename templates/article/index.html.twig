@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="card border-secondary">
+        <div class="card-header">
+            <div class="row">
+                <div class="col">Articles list</div>
+                <div class="col text-right">
+                    <a href="{{ path('article_add') }}" class="btn btn-primary btn-sm"><i class="fas fa-plus-circle"></i> New article</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-body">
+            <table class="table table-dark table-striped table-hover">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Deleted</th>
+                    <th>Created at</th>
+                    <th>#</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for article in articles %}
+                    <tr>
+                        <td>{{ article.id }}</td>
+                        <td>{{ article.title }}</td>
+                        <td>
+                            {% if article.deleted %}
+                                <span class="btn btn-sm btn-success">
+                            <i class="fas fa-check-circle"></i>
+                        </span>
+                            {% else %}
+                                <span class="btn btn-sm btn-secondary">
+                            <i class="far fa-check-circle"></i>
+                                </span>
+                            {% endif %}
+                        </td>
+                        <td>{{ article.createdAt|date }}</td>
+                        <td>
+                            <a href="{{ path('article_edit',{'id': article.id}) }}" class="btn btn-outline-warning btn-sm">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <a href="{{ path('article_delete',{'id': article.id}) }}" class="btn btn-outline-danger btn-sm">
+                                <i class="fas fa-trash-alt"></i>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
