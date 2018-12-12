@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Article;
 use App\Form\ArticleType;
+use Knp\Component\Pager\PaginatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -14,12 +15,15 @@ use Symfony\Component\Routing\Annotation\Route;
 class ArticleController extends AbstractController
 {
     /**
-     * @Route("/article", name="articles")
+     * @Route("/articles", name="articles")
      */
-    public function index()
+    public function index(Request $request,PaginatorInterface $paginator)
     {
         $repo = $this->getDoctrine()->getEntityManager()->getRepository(Article::class);
-        $articles = $repo->findAll();
+        $articlesQuery = $repo->createQueryBuilder('a')->select('a')->getQuery();
+        //$paginator = $this->get('knp_paginator');
+        $articles = $paginator->paginate($articlesQuery,$request->query->get('page',1),5);
+
         return $this->render('article/index.html.twig',array('articles' => $articles));
     }
 

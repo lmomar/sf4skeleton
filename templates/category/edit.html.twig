@@ -2,13 +2,11 @@
 {% block body %}
     <div class="card border-secondary">
         <div class="card-header">
-            Edit article
+            Edit category
         </div>
         <div class="card-body">
             {{ form_start(form) }}
-            {{ form_row(form.category) }}
-            {{ form_row(form.title) }}
-            {{ form_row(form.description) }}
+            {{ form_row(form.name) }}
             {{ form_row(form.enabled) }}
             {{ form_row(form.submit) }}
             {{ form_end(form) }}

@@ -1,0 +1,11 @@
+<ul class="list-group">
+    <li class="list-group-item disabled"><a>Menu</a></li>
+    <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+        <a href="{{ path('categories') }}">Categories</a>
+        <span class="badge badge-primary badge-pill">{{ category }}</span>
+    </li>
+    <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+        <a href="{{ path('articles') }}">Articles</a>
+        <span class="badge badge-primary badge-pill">{{ article }}</span>
+    </li>
+</ul>

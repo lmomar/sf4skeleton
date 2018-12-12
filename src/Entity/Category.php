@@ -31,7 +31,7 @@ class Category
     /**
      * @ORM\Column(type="boolean")
      */
-    private $deleted;
+    private $enabled;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Article", mappedBy="category")
@@ -73,17 +73,6 @@ class Category
         return $this;
     }
 
-    public function getDeleted(): ?bool
-    {
-        return $this->deleted;
-    }
-
-    public function setDeleted(bool $deleted): self
-    {
-        $this->deleted = $deleted;
-
-        return $this;
-    }
 
     /**
      * @return Collection|Article[]
@@ -119,5 +108,17 @@ class Category
     public function __toString()
     {
         return (string) $this->getName();
+    }
+
+    public function getEnabled(): ?bool
+    {
+        return $this->enabled;
+    }
+
+    public function setEnabled(bool $enabled): self
+    {
+        $this->enabled = $enabled;
+
+        return $this;
     }
 }

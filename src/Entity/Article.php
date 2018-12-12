@@ -42,7 +42,7 @@ class Article
     /**
      * @ORM\Column(type="boolean")
      */
-    private $deleted;
+    private $enabled;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="articles")
@@ -91,17 +91,6 @@ class Article
         return $this;
     }
 
-    public function getDeleted(): ?bool
-    {
-        return $this->deleted;
-    }
-
-    public function setDeleted(bool $deleted): self
-    {
-        $this->deleted = $deleted;
-
-        return $this;
-    }
 
     public function getCategory(): ?Category
     {
@@ -111,6 +100,18 @@ class Article
     public function setCategory(?Category $category): self
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    public function getEnabled(): ?bool
+    {
+        return $this->enabled;
+    }
+
+    public function setEnabled(bool $enabled): self
+    {
+        $this->enabled = $enabled;
 
         return $this;
     }

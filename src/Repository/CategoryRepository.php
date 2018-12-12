@@ -47,4 +47,14 @@ class CategoryRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function getCount()
+    {
+        return $this->createQueryBuilder('c')
+            ->select('count(c)')
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
+
 }

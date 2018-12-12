@@ -47,4 +47,12 @@ class ArticleRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function getCount(){
+        return $this->createQueryBuilder('a')
+            ->select('count(a)')
+            ->getQuery()
+            ->getSingleScalarResult()
+            ;
+    }
 }
